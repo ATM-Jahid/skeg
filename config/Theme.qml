@@ -12,6 +12,9 @@ QtObject {
     readonly property color urgent: "#ffed8796"
 
     readonly property int barWidth: 24
+    readonly property int radius: 10
     readonly property int spacing: 8
+    readonly property int drawerWidth: 248
+    readonly property int animationDuration: 50
     readonly property string fontFamily: "sans-serif"
 }
