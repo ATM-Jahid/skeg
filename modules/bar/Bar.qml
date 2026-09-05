@@ -1,6 +1,5 @@
 import QtQuick
 import Quickshell
-import Quickshell.Wayland
 import "../../config"
 
 Variants {
@@ -23,11 +22,8 @@ Variants {
 
         Rectangle {
             anchors.fill: parent
-            anchors.margins: 6
-            radius: Theme.radius
+            radius: 0
             color: Theme.background
-            border.width: 1
-            border.color: "#18ffffff"
 
             BarContent {
                 anchors.fill: parent

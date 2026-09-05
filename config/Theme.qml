@@ -11,8 +11,7 @@ QtObject {
     readonly property color accent: "#ff8aadf4"
     readonly property color urgent: "#ffed8796"
 
-    readonly property int barWidth: 56
-    readonly property int radius: 14
+    readonly property int barWidth: 24
     readonly property int spacing: 8
     readonly property string fontFamily: "sans-serif"
 }
