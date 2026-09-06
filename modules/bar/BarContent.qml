@@ -17,7 +17,11 @@ Item {
 
         Item { Layout.fillHeight: true }
 
-        StatusArea {
+        Volume {
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        Battery {
             Layout.alignment: Qt.AlignHCenter
         }
 
