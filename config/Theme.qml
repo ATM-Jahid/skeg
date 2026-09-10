@@ -6,6 +6,7 @@ QtObject {
     readonly property color background: "#e6141720"
     readonly property color surface: "#ff202431"
     readonly property color surfaceHover: "#ff2a3040"
+    readonly property color workspaceFocused: "#ff29384d"
     readonly property color foreground: "#ffe7eaf0"
     readonly property color muted: "#ff8b93a7"
     readonly property color accent: "#ff8aadf4"

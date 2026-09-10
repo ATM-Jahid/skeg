@@ -2,12 +2,14 @@ import QtQuick
 import Quickshell.Services.Pipewire
 import "../../config"
 
-Item {
+Rectangle {
     id: volume
 
     PwObjectTracker { objects: [Pipewire.defaultAudioSink] }
     implicitWidth: Theme.barWidth
     implicitHeight: 42
+    radius: 4
+    color: mouse.containsMouse ? Theme.surfaceHover : "transparent"
     readonly property var sink: Pipewire.defaultAudioSink
     readonly property int percent: sink?.audio ? Math.round(sink.audio.volume * 100) : 0
 
@@ -31,7 +33,11 @@ Item {
     }
 
     MouseArea {
+        id: mouse
         anchors.fill: parent
+        enabled: !!volume.sink?.audio
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
         onClicked: if (volume.sink?.audio) volume.sink.audio.muted = !volume.sink.audio.muted
         onWheel: wheel => {
             if (!volume.sink?.audio || volume.sink.audio.muted) return;

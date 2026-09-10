@@ -26,11 +26,15 @@ ColumnLayout {
             implicitWidth: Theme.barWidth
             implicitHeight: onThisScreen ? workspaceContents.implicitHeight + 8 : 0
             visible: onThisScreen
-            color: modelData.focused ? Theme.surfaceHover : "transparent"
+            color: modelData.focused ? Theme.workspaceFocused
+                : workspaceMouse.containsMouse ? Theme.surfaceHover : "transparent"
 
             MouseArea {
+                id: workspaceMouse
                 anchors.fill: parent
                 z: 0
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     const workspaceName = workspaceItem.modelData.name;
                     const command = Hyprland.usingLua
@@ -60,7 +64,7 @@ ColumnLayout {
                 Repeater {
                     model: Hyprland.toplevels
 
-                    delegate: Item {
+                    delegate: Rectangle {
                         id: appItem
                         required property var modelData
                         readonly property bool inWorkspace: modelData.workspace === workspaceItem.modelData
@@ -69,6 +73,10 @@ ColumnLayout {
                         implicitWidth: inWorkspace ? 24 : 0
                         implicitHeight: inWorkspace ? 24 : 0
                         visible: inWorkspace
+                        radius: 4
+                        color: appMouse.containsMouse
+                            ? (workspaceItem.modelData.focused ? Qt.lighter(Theme.workspaceFocused, 1.3) : Theme.surfaceHover)
+                            : "transparent"
 
                         AppIcon {
                             anchors.fill: parent
@@ -90,8 +98,11 @@ ColumnLayout {
                         }
 
                         MouseArea {
+                            id: appMouse
                             anchors.fill: parent
                             z: 2
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
                             onClicked: {
                                 const address = appItem.modelData.address;
                                 const command = Hyprland.usingLua

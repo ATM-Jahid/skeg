@@ -6,11 +6,13 @@ import Quickshell
 import "../../components"
 import "../../config"
 
-Item {
+Rectangle {
     id: root
 
     implicitWidth: Theme.barWidth
     implicitHeight: timeColumn.implicitHeight + 12
+    radius: 4
+    color: mouse.containsMouse ? Theme.surfaceHover : "transparent"
 
     SystemClock {
         id: clock
@@ -41,7 +43,10 @@ Item {
     }
 
     MouseArea {
+        id: mouse
         anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
         onClicked: calendar.visible = !calendar.visible
     }
 
