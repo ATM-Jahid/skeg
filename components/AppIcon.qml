@@ -12,8 +12,11 @@ Item {
     readonly property var desktopEntry: {
         // Lookup methods don't notify QML when the asynchronous scan finishes.
         root.entriesRevision;
-        return DesktopEntryLookup.lookup(root.appIds, DesktopEntries.applications.values,
-            id => DesktopEntries.byId(id));
+        return DesktopEntryLookup.lookup(
+            root.appIds,
+            DesktopEntries.applications.values,
+            id => DesktopEntries.byId(id)
+        );
     }
     readonly property bool iconReady: icon.status === Image.Ready
 

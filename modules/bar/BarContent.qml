@@ -17,6 +17,10 @@ Item {
 
         Item { Layout.fillHeight: true }
 
+        Tray {
+            Layout.alignment: Qt.AlignHCenter
+        }
+
         Volume {
             Layout.alignment: Qt.AlignHCenter
         }
