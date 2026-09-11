@@ -1,4 +1,5 @@
 import QtQuick
+import Quickshell
 import Quickshell.Services.Pipewire
 import "../../config"
 
@@ -35,10 +36,16 @@ Rectangle {
     MouseArea {
         id: mouse
         anchors.fill: parent
-        enabled: !!volume.sink?.audio
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: if (volume.sink?.audio) volume.sink.audio.muted = !volume.sink.audio.muted
+        onClicked: event => {
+            if (event.button === Qt.RightButton) {
+                Quickshell.execDetached(["pavucontrol"]);
+            } else if (event.button === Qt.LeftButton && volume.sink?.audio) {
+                volume.sink.audio.muted = !volume.sink.audio.muted;
+            }
+        }
         onWheel: wheel => {
             if (!volume.sink?.audio || volume.sink.audio.muted) return;
             // A standard wheel notch is 120 units; change volume by 1% per notch.
