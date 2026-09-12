@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.SystemTray
 import "../../config"
+import "../../components"
 
 Column {
     id: tray
@@ -32,12 +33,10 @@ Column {
                 fillMode: Image.PreserveAspectFit
             }
 
-            QsMenuAnchor {
+            TrayMenu {
                 id: menu
                 menu: entry.modelData.menu
-                anchor.item: entry
-                anchor.edges: Edges.Right
-                anchor.gravity: Edges.Right
+                anchorItem: entry
             }
 
             MouseArea {
