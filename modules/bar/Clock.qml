@@ -50,13 +50,14 @@ Rectangle {
         onClicked: calendar.visible = !calendar.visible
     }
 
-    DrawerPopup {
+    BasePopup {
         id: calendar
         anchorItem: root
+        contentWidth: Theme.drawerWidth
         contentHeight: 286
 
         ColumnLayout {
-            width: Theme.drawerWidth - 28
+            width: parent.width
             spacing: 10
 
             Text {

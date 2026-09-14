@@ -1,22 +1,15 @@
 import QtQuick
 import QtQuick.Controls.Basic
 import Quickshell
-import "../config"
 
-PopupWindow {
+BasePopup {
     id: root
 
-    required property Item anchorItem
     property QsMenuHandle menu
 
-    anchor.item: anchorItem
-    anchor.edges: Edges.Right
-    anchor.gravity: Edges.Right
-    implicitWidth: 280
-    implicitHeight: Math.min((stack.currentItem?.contentHeight ?? 0) + 12,
+    contentWidth: 280
+    contentHeight: Math.min((stack.currentItem?.contentHeight ?? 0) + padding * 2,
         screen ? screen.height - 24 : 600)
-    color: "transparent"
-    grabFocus: true
 
     function open() {
         if (!menu) return;
@@ -31,18 +24,10 @@ PopupWindow {
     onVisibleChanged: { if (!visible) stack.clear(); }
     onMenuChanged: close()
 
-    Rectangle {
+    StackView {
+        id: stack
         anchors.fill: parent
-        color: Theme.trayMenuBackground
-        radius: 6
-        border.color: Theme.surfaceHover
-
-        StackView {
-            id: stack
-            anchors.fill: parent
-            anchors.margins: 6
-            clip: true
-        }
+        clip: true
     }
 
     Component {
