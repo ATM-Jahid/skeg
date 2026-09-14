@@ -73,7 +73,8 @@ FocusScope {
         clip: true
         currentIndex: -1
         // Keep all rows available for keyboard navigation, including offscreen rows.
-        cacheBuffer: Math.max(0, contentHeight)
+        // Use the maximum row height so delegate layout cannot feed back into the cache size.
+        cacheBuffer: count * 32
         ScrollBar.vertical: ScrollBar {}
 
         delegate: ItemDelegate {
