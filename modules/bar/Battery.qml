@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Shapes
 import Quickshell.Services.UPower
 import "../../config"
 
@@ -8,6 +9,7 @@ Item {
     implicitHeight: visible ? 42 : 0
     visible: UPower.displayDevice.ready && UPower.displayDevice.isPresent
     readonly property int percent: Math.round(UPower.displayDevice.percentage * 100)
+    readonly property bool charging: UPower.displayDevice.state === UPowerDeviceState.Charging
 
     Rectangle {
         id: batteryBody
@@ -37,6 +39,26 @@ Item {
         height: 6
         radius: 1
         color: battery.percent <= 15 ? Theme.urgent : Theme.foreground
+    }
+    Shape {
+        anchors.centerIn: batteryBody
+        width: 8
+        height: 14
+        visible: battery.charging
+
+        ShapePath {
+            strokeColor: Theme.background
+            strokeWidth: 1
+            fillColor: Theme.foreground
+            startX: 5
+            startY: 0
+            PathLine { x: 0; y: 8 }
+            PathLine { x: 3; y: 8 }
+            PathLine { x: 2; y: 14 }
+            PathLine { x: 8; y: 5 }
+            PathLine { x: 5; y: 5 }
+            PathLine { x: 5; y: 0 }
+        }
     }
     Text {
         anchors.horizontalCenter: parent.horizontalCenter
