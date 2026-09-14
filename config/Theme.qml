@@ -10,6 +10,7 @@ QtObject {
     readonly property color foreground: "#ffe7eaf0"
     readonly property color muted: "#ff8b93a7"
     readonly property color accent: "#ff8aadf4"
+    readonly property color charging: "#ffa6da95"
     readonly property color urgent: "#ffed8796"
 
     readonly property int barWidth: 24

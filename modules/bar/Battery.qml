@@ -29,7 +29,7 @@ Item {
             anchors.margins: 2
             width: Math.max(1, (parent.width - 4) * battery.percent / 100)
             radius: 1
-            color: battery.percent <= 15 ? Theme.urgent : Theme.accent
+            color: battery.charging ? Theme.charging : (battery.percent <= 15 ? Theme.urgent : Theme.accent)
         }
     }
     Rectangle {
